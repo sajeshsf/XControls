@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<TargetFramework>net45</TargetFramework>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
@@ -16,11 +15,10 @@
 		<FileVersion>$(Version)</FileVersion>
 		<Version>1.0.3.0</Version>
 	</PropertyGroup>
-
 	<ItemGroup>
 		<None Update="README.md">
 			<Pack>True</Pack>
+			<PackagePath></PackagePath>
 		</None>
 	</ItemGroup>
-
 </Project>

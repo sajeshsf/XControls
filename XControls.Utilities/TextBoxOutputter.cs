@@ -47,7 +47,7 @@ namespace XControls.Utilities
         private void Timer_Tick(object? sender, EventArgs e)
         {
             int count = 0;
-            while (Messages.TryDequeue(out string text) && count < 10)
+            while (Messages.TryDequeue(out string? text) && count < 10)
             {
                 ((Paragraph)RichTextBox.Document.Blocks.First()).Inlines.Add(text);
                 CurrentLineCount++;

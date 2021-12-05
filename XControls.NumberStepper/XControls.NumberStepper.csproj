@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net45</TargetFramework>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/sajeshsf/XControls</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/sajeshsf/XControls</PackageProjectUrl>
+		<Description>Numberstepper for windows desktop applications</Description>
+		<Company>Sajesh S F</Company>
+		<PackageTags>wpf,mvvm,utilities</PackageTags>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<FileVersion>$(Version)</FileVersion>
+		<Version>1.0.2.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Update="README.md">
+			<Pack>True</Pack>
+		</None>
+	</ItemGroup>
+
+</Project>

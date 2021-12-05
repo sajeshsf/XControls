@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="XControls.NumberStepper.NumberStepper"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:XControls.NumberStepper"      
+             xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!--<materialdesign:BrushRoundConverter x:Key="BrushColorConverter" />-->
+
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="StepperTextBoxStyle1" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="2,0,2,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" BorderBrush="Transparent"  BorderThickness="0"  SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!--<Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" Value="#FF454545"/>
+                                <Setter Property="Foreground" Value="Gray"/>
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>-->
+                            <!--<Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>-->
+                            <Trigger Property="Validation.HasError" Value="True">
+                                <Setter Property="ToolTip"
+                                        Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                    AncestorType=local:NumberStepper},Path=ToolTip}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <!--<MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>-->
+            </Style.Triggers>
+        </Style>
+
+        <!--<Style TargetType="Button" x:Key="downButton" >
+            -->
+        <!--<Setter Property="Background" Value="#FF454545"/>
+            <Setter Property="Foreground" Value="White"/>-->
+        <!--
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <materialdesign:PackIcon x:Name="icon" Kind="KeyboardArrowDown"
+                                                  Background="{TemplateBinding Background}"
+                                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ContentPresenter />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="Background" TargetName="icon" Value="#FF0bdbb6" />
+                                <Setter Property="Foreground" TargetName="icon" Value="#FFf0f0f0" />
+                            </Trigger>
+                            <Trigger  Property="IsEnabled" Value="false">
+                                -->
+        <!--<Setter Property="Background" TargetName="icon" Value="Transparent"/>-->
+        <!--
+                                <Setter Property="Foreground" TargetName="icon" Value="Gray"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="upButton" >
+            -->
+        <!--<Setter Property="Background" Value="#FF454545"/>
+            <Setter Property="Foreground" Value="White"/>-->
+        <!--
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}" >
+                            <Grid >
+                                <materialdesign:PackIcon x:Name="icon" Kind="KeyboardArrowUp" 
+                                                Background="{TemplateBinding Background}"
+                                                HorizontalAlignment="Center" VerticalAlignment="Center"     />
+                                <ContentPresenter/>
+                            </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="Background" TargetName="icon" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:NumberStepper},Path=StepperBackground}" />
+                                <Setter Property="Foreground" TargetName="icon" Value="#FFf0f0f0"  />
+                            </Trigger>
+                            <Trigger  Property="IsEnabled" Value="false">
+                                -->
+        <!--<Setter Property="Background" TargetName="icon" Value="Transparent"/>-->
+        <!--
+                                <Setter Property="Foreground" TargetName="icon" Value="Gray"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+    </UserControl.Resources>
+
+    <Border   SnapsToDevicePixels="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="0.1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="UpButton" Style="{DynamicResource upButton}" VerticalAlignment="Stretch" Grid.Row="0" 
+                    Grid.Column="1" HorizontalAlignment="Right" PreviewMouseLeftButtonDown="UpButton_PreviewMouseLeftButtonDown"
+                    PreviewMouseLeftButtonUp="UpButton_PreviewMouseLeftButtonUp" Click="UpButton_Click" BorderThickness="0"/>
+            <Button x:Name="DownButton" Style="{DynamicResource downButton}"  Grid.Row="1" Grid.Column="1"  
+                    HorizontalAlignment="Right" PreviewMouseLeftButtonDown="DownButton_PreviewMouseLeftButtonDown"
+                    PreviewMouseLeftButtonUp="DownButton_PreviewMouseLeftButtonUp"
+                    Click="DownButton_Click" BorderThickness="0" Margin="0"/>
+            <TextBox x:Name="contentBox" Style="{DynamicResource StepperTextBoxStyle1}" BorderBrush="Transparent" BorderThickness="0"
+                     Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}},
+                                                      Path=Number,UpdateSourceTrigger=PropertyChanged,Delay=1000}" 
+                     Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalContentAlignment="Center" />
+
+        </Grid>
+    </Border>
+</UserControl>

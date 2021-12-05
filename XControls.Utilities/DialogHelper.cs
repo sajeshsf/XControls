@@ -1,8 +1,9 @@
 ﻿using Microsoft.Win32;
 using System.IO;
 using System.Linq;
+using XControls.Helpers;
 
-namespace XControls.Helpers
+namespace XControls.Utilities
 {
     public class DialogHelper
     {

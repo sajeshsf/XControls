@@ -4,9 +4,9 @@ using System.Globalization;
 
 namespace XControls.ValueConverters
 {
-    public class EnumDescriptionTypeConverter : EnumConverter
+    public class DescriptionConverter : EnumConverter
     {
-        public EnumDescriptionTypeConverter(Type type) : base(type) => _ = true;
+        public DescriptionConverter(Type type) : base(type) => _ = true;
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType != typeof(string))
@@ -17,6 +17,10 @@ namespace XControls.ValueConverters
             {
                 return string.Empty;
             }
+            return GetDescription(value);
+        }
+        private static object GetDescription(object value)
+        {
             var name = value.ToString();
             if (name == null)
             {

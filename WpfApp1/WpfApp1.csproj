@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\XControls.Helpers\XControls.Helpers.csproj" />
+    <ProjectReference Include="..\XControls.MessageBanner\XControls.MessageBanner.csproj" />
+    <ProjectReference Include="..\XControls.MessageBox\XControls.MessageBox.csproj" />
+    <ProjectReference Include="..\XControls.NumberStepper\XControls.NumberStepper.csproj" />
+    <ProjectReference Include="..\XControls.Utilities\XControls.Utilities.csproj" />
+    <ProjectReference Include="..\XControls.ValueConverters\XControls.ValueConverters.csproj" />
+  </ItemGroup>
+
+</Project>

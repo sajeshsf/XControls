@@ -16,17 +16,18 @@ namespace XControls.NumberStepper
         private double incrementValue = 1;
         private Timer mousePressedTimer;
         #region StepperBackgroundProperty
-        public static readonly DependencyProperty StepperBackgroundProperty = DependencyProperty.Register(nameof(StepperBackground), typeof(Brush), typeof(NumberStepper), new PropertyMetadata(default(Brush), OnBackgroundPropertyChanged));
-        private static void OnBackgroundPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
-        {
-            NumberStepper myUserControl = dependencyObject as NumberStepper;
-            myUserControl.OnBackgroundPropertyChanged(e);
-        }
+        public static readonly DependencyProperty StepperBackgroundProperty = DependencyProperty.Register(nameof(StepperBackground), 
+            typeof(Brush), typeof(NumberStepper), new PropertyMetadata(default(Brush), OnBackgroundPropertyChanged));
+        private static void OnBackgroundPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e) =>
+            (dependencyObject as NumberStepper)?.OnBackgroundPropertyChanged(e);
         private void OnBackgroundPropertyChanged(DependencyPropertyChangedEventArgs e)
         {
-            contentBox.Background = (Brush)e.NewValue;
-            UpButton.Background = (Brush)e.NewValue;
-            DownButton.Background = (Brush)e.NewValue;
+            if (e.NewValue is Brush brush)
+            {
+                contentBox.Background = brush;
+                UpButton.Background = brush;
+                DownButton.Background = brush; 
+            }
         }
         public Brush StepperBackground
         {
@@ -44,17 +45,18 @@ namespace XControls.NumberStepper
         }
         #endregion
         #region StepperForegroundProperty
-        public static readonly DependencyProperty StepperForegroundProperty = DependencyProperty.Register(nameof(StepperForeground), typeof(Brush), typeof(NumberStepper), new PropertyMetadata(default(Brush), OnForegroundPropertyChanged));
-        private static void OnForegroundPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
-        {
-            NumberStepper myUserControl = dependencyObject as NumberStepper;
-            myUserControl.OnForegroundPropertyChanged(e);
-        }
+        public static readonly DependencyProperty StepperForegroundProperty = DependencyProperty.Register(nameof(StepperForeground),
+            typeof(Brush), typeof(NumberStepper), new PropertyMetadata(default(Brush), OnForegroundPropertyChanged));
+        private static void OnForegroundPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e) =>
+            (dependencyObject as NumberStepper)?.OnForegroundPropertyChanged(e);
         private void OnForegroundPropertyChanged(DependencyPropertyChangedEventArgs e)
         {
-            contentBox.Foreground = (Brush)e.NewValue;
-            UpButton.Foreground = (Brush)e.NewValue;
-            DownButton.Foreground = (Brush)e.NewValue;
+            if (e.NewValue is Brush brush)
+            {
+                contentBox.Foreground = brush;
+                UpButton.Foreground = brush;
+                DownButton.Foreground = brush;
+            }
         }
         public Brush StepperForeground
         {
@@ -86,12 +88,10 @@ namespace XControls.NumberStepper
         public static readonly DependencyProperty MaxProperty = DependencyProperty.Register(nameof(Max), typeof(double), typeof(NumberStepper), new PropertyMetadata(default(double)));
         #endregion
         #region NumberProperty
-        public static readonly DependencyProperty NumberProperty = DependencyProperty.Register(nameof(Number), typeof(double), typeof(NumberStepper), new PropertyMetadata(default(double), OnNumberPropertyChanged));
-        private static void OnNumberPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
-        {
-            NumberStepper myUserControl = dependencyObject as NumberStepper;
-            myUserControl.OnNumberPropertyChanged();
-        }
+        public static readonly DependencyProperty NumberProperty = DependencyProperty.Register(nameof(Number), typeof(double), 
+            typeof(NumberStepper), new PropertyMetadata(default(double), OnNumberPropertyChanged));
+        private static void OnNumberPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e) => 
+            (dependencyObject as NumberStepper)?.OnNumberPropertyChanged();
         private void OnNumberPropertyChanged()
         {
             if (Number > Max)

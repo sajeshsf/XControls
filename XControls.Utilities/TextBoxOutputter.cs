@@ -12,7 +12,7 @@ namespace XControls.Utilities
 {
     public class TextBoxOutputter : TextWriter
     {
-        private readonly RichTextBox RichTextBox = null;
+        private readonly RichTextBox RichTextBox;
         public DispatcherTimer Timer { get; set; }
         private ConcurrentQueue<string> Messages { get; set; }
         private bool ClearRequested { get; set; }
@@ -30,8 +30,9 @@ namespace XControls.Utilities
             }
         }
         public override Encoding Encoding => Encoding.UTF8;
-        public TextBoxOutputter()
+        public TextBoxOutputter(RichTextBox richTextBox)
         {
+            RichTextBox = richTextBox;
             UpdatePeriod = 500;
             MaximumNumberOfLines = 2000;
             Messages = new ConcurrentQueue<string>();
@@ -42,7 +43,6 @@ namespace XControls.Utilities
             };
             Timer.Tick += Timer_Tick;
         }
-        public TextBoxOutputter(RichTextBox richTextBox) : this() => RichTextBox = richTextBox;
         public void SetOut() => Console.SetOut(this);
         private void Timer_Tick(object? sender, EventArgs e)
         {

@@ -1,2 +1,2 @@
-# XControls.MessageBanner
+# XControls.Utilities
 Message Banner control for WPF

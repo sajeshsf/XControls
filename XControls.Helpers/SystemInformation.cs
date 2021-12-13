@@ -15,16 +15,16 @@ namespace XControls.Helpers
         public ArrayList Win32_StartupCommand => GetInformation("Win32_StartupCommand");
         private ArrayList GetInformation(string qry)
         {
-            ArrayList arrayListInformationCollactor = new ArrayList();
+            var arrayListInformationCollactor = new ArrayList();
             try
             {
                 int i = 0;
-                using ManagementObjectSearcher searcher = new ManagementObjectSearcher($"SELECT * FROM {qry}");
-                foreach (ManagementObject mo in searcher.Get())
+                using var searcher = new ManagementObjectSearcher($"SELECT * FROM {qry}");
+                foreach (var mo in searcher.Get())
                 {
                     i++;
-                    PropertyDataCollection searcherProperties = mo.Properties;
-                    foreach (PropertyData sp in searcherProperties)
+                    var searcherProperties = mo.Properties;
+                    foreach (var sp in searcherProperties)
                     {
                         arrayListInformationCollactor.Add(sp);
                     }

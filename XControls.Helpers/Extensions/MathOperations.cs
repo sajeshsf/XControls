@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace XControls.Helpers.Extensions
 {
@@ -113,6 +114,53 @@ namespace XControls.Helpers.Extensions
             return result * 100;
         }
         public static double GetPercentage(double currentVal, double maxValue) => Math.Min(Math.Round(100 * (currentVal / maxValue), 2), 100);
+        public static (T min, T max) GetMinAndMaxValue<T>(this T[] array) where T : IComparable<T>
+        {
+            _ = array ?? throw new ArgumentNullException(nameof(array));
+            var minimumValue = array[0];
+            var maximumValue = array[0];
+            Parallel.For(0, array.Length, indx =>
+            {
+                var pixelValue = array[indx];
 
+                if (pixelValue.CompareTo(minimumValue) < 0)
+                    minimumValue = pixelValue;
+
+                if (pixelValue.CompareTo(maximumValue) > 0)
+                    maximumValue = pixelValue;
+
+            });
+            return (minimumValue, maximumValue);
+        }
+        public static (double sf, double offset) GetScalefactorOffset(double minPixelValue, double maxPixelValue, double absoluteMaxValue = byte.MaxValue)
+        {
+            var differnce = (maxPixelValue - minPixelValue);
+            return (differnce / absoluteMaxValue, minPixelValue);
+        }
+        public static (float sf, float offset) GetScalefactorOffset(float minPixelValue, float maxPixelValue, float absoluteMaxValue = byte.MaxValue)
+        {
+            var differnce = (maxPixelValue - minPixelValue);
+            return (differnce / absoluteMaxValue, minPixelValue);
+        }
+        public static (long sf, long offset) GetScalefactorOffset(long minPixelValue, long maxPixelValue, long absoluteMaxValue = byte.MaxValue)
+        {
+            var differnce = (maxPixelValue - minPixelValue);
+            return (differnce / absoluteMaxValue, minPixelValue);
+        }
+        public static (int sf, int offset) GetScalefactorOffset(int minPixelValue, int maxPixelValue, int absoluteMaxValue = byte.MaxValue)
+        {
+            var differnce = (maxPixelValue - minPixelValue);
+            return (differnce / absoluteMaxValue, minPixelValue);
+        }
+        public static (uint sf, uint offset) GetScalefactorOffset(uint minPixelValue, uint maxPixelValue, uint absoluteMaxValue = byte.MaxValue)
+        {
+            var differnce = (maxPixelValue - minPixelValue);
+            return (differnce / absoluteMaxValue, minPixelValue);
+        }
+        public static (ulong sf, ulong offset) GetScalefactorOffset(ulong minPixelValue, ulong maxPixelValue, ulong absoluteMaxValue = byte.MaxValue)
+        {
+            var differnce = (maxPixelValue - minPixelValue);
+            return (differnce / absoluteMaxValue, minPixelValue);
+        }
     }
 }

@@ -1,19 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net45</TargetFramework>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<Nullable>enable</Nullable>
-		<UseWPF>true</UseWPF>
+		<LangVersion>10.0</LangVersion>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/sajeshsf/XControls</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/sajeshsf/XControls</PackageProjectUrl>
 		<Description>Essential utilities for wpf application including Property Change Implementation,relay command etc.</Description>
 		<Company>Sajesh S F</Company>
-		<PackageTags>wpf,mvvm,utilities</PackageTags>
+		<PackageTags>c#,mvvm,utilities</PackageTags>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
-		<Version>1.0.5.0</Version>
+		<Version>1.0.6.0</Version>
+		<TargetFrameworks>net461;</TargetFrameworks>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<EnableNETAnalyzers>True</EnableNETAnalyzers>
+		<AnalysisLevel>preview</AnalysisLevel>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
@@ -23,9 +25,11 @@
 	  <ProjectReference Include="..\XControls.Helpers\XControls.Helpers.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Update="README.md">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
+		<None Include="README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="PresentationCore" />
+	  <Reference Include="PresentationFramework" />
+	  <Reference Include="WindowsBase" />
 	</ItemGroup>
 </Project>

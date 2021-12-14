@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<Version>1.0.7.0</Version>
+		<Description>Essential utilities for wpf application including Property Change Implementation,relay command etc.</Description>
 		<Nullable>enable</Nullable>
 		<LangVersion>10.0</LangVersion>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/sajeshsf/XControls</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/sajeshsf/XControls</PackageProjectUrl>
-		<Description>Essential utilities for wpf application including Property Change Implementation,relay command etc.</Description>
 		<Company>Sajesh S F</Company>
 		<PackageTags>c#,mvvm,utilities</PackageTags>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
-		<Version>1.0.7.0</Version>
 		<TargetFrameworks>net461;</TargetFrameworks>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>

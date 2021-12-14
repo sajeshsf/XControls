@@ -42,6 +42,11 @@ namespace XControls.Utilities
         public override Encoding Encoding => Encoding.UTF8;
         public TextBoxOutputter(RichTextBox richTextBox)
         {
+            RichTextBox = richTextBox;
+            if (RichTextBox.Document.Blocks.First() is Paragraph paragraph)
+            {
+                paragraph.LineHeight = 20;
+            }
             MaximumNumberOfLines = 2000;
             Messages = new ConcurrentQueue<string>();
             Timer = new DispatcherTimer
@@ -50,11 +55,6 @@ namespace XControls.Utilities
                 IsEnabled = true
             };
             Timer.Tick += Timer_Tick;
-            RichTextBox = richTextBox;
-            if (RichTextBox.Document.Blocks.First() is Paragraph paragraph)
-            {
-                paragraph.LineHeight = 20;
-            }
             Console.SetOut(this);
         }
         private void Timer_Tick(object sender, EventArgs e) => UpdateUi();

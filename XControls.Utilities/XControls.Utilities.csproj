@@ -11,7 +11,7 @@
 		<PackageTags>c#,mvvm,utilities</PackageTags>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
-		<Version>1.0.6.0</Version>
+		<Version>1.0.7.0</Version>
 		<TargetFrameworks>net461;</TargetFrameworks>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>

@@ -24,7 +24,8 @@ namespace XControls.Helpers
                 }
             }
         }
-        public static DirectoryInfo CreateDirectory(this string path) => !Directory.Exists(path) ? Directory.CreateDirectory(path) : new DirectoryInfo(path);
+        public static DirectoryInfo CreateDirectory(this string path) =>
+            !Directory.Exists(path) ? Directory.CreateDirectory(path) : new DirectoryInfo(path);
         /// <summary>  
         /// Delete File To Recycle Bin  
         /// WARMING: NETWORK FILES DON'T GO TO RECYCLE BIN  
@@ -63,7 +64,8 @@ namespace XControls.Helpers
             var t = GetDriveInfo(path);
             return (t.TotalSize, t.TotalSize - t.AvailableFreeSpace, t.AvailableFreeSpace);
         }
-        public static string ChangeExtention(this string filePath, string extention) => $"{Path.GetDirectoryName(filePath)}\\{Path.GetFileNameWithoutExtension(filePath)}{extention}";
+        public static string ChangeExtention(this string filePath, string extention) =>
+            $"{Path.GetDirectoryName(filePath)}\\{Path.GetFileNameWithoutExtension(filePath)}{extention}";
         public static string InsertDirectory(this string filePath, string newFolder)
         {
             var v = Path.GetDirectoryName(filePath);

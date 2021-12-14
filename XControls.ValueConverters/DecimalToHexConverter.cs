@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Windows.Data;
 
 namespace XControls.ValueConverters
@@ -9,12 +8,14 @@ namespace XControls.ValueConverters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null || string.IsNullOrEmpty(value.ToString()))
+            if (value != null && !string.IsNullOrEmpty(value.ToString()))
             {
-                return $"0x{0:X}";
+                if (int.TryParse(value.ToString(), out int number))
+                {
+                    return $"0x{number:X}";
+                }
             }
-            int.TryParse(value.ToString(), out int number);
-            return $"0x{number:X}";
+            return $"0x{0:X}";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -38,7 +39,7 @@ namespace XControls.ValueConverters
                     case "3":
                     default:
                         return System.Convert.ToInt32(input, 16).ToString();
-                } 
+                }
             }
             return 0;
         }

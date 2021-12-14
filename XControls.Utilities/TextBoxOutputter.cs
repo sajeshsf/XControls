@@ -74,8 +74,8 @@ namespace XControls.Utilities
                 paragraph.Inlines.Clear();
             }
             int count = 0;
-            StringBuilder message = new StringBuilder();
-            while (count < 1000 && Messages.TryDequeue(out string text))
+            var message = new StringBuilder();
+            while (count < 1000 && Messages.TryDequeue(out string? text))
             {
                 message.Append(text);
                 CurrentLineCount++;

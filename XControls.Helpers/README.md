@@ -1,5 +1,5 @@
 # XControls.Helpers
 
 [![NuGet Generation](https://github.com/sajeshsf/XControls/actions/workflows/Helpers.yml/badge.svg)](https://github.com/sajeshsf/XControls/actions/workflows/Helpers.yml)
-[![NuGet version](https://badge.fury.io/nu/XControls.Helpers.svg)](https://badge.fury.io/nu/XControls.Helpers)
-![Nuget](https://img.shields.io/nuget/dt/Xcontrols.Helpers)
+![Nuget](https://img.shields.io/nuget/v/Xcontrols.Helpers?label=Version)
+![Nuget](https://img.shields.io/nuget/dt/Xcontrols.Helpers?label=Downloads)

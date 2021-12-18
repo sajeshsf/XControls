@@ -35,4 +35,4 @@ jobs:
       - name: Push generated package to GitHub registry
         run: |
           cd XControls.MessageBox/out/
-          dotnet nuget push **/*.nupkg -k oy2ke5fy427zjikjvfxqfkxfxm3oh7ce5jaorskkkwdomi --skip-duplicate --no-symbols true
+          dotnet nuget push **/*.nupkg -k ${{secrets.NUGETKEY}} --no-symbols true

@@ -3,11 +3,8 @@ name: NumberStepper NuGet Generation
 on:
   push:
     paths:
+      - '.github/workflows/NumberStepper.yml'
       - 'XControls.NumberStepper/**'
-    branches:
-      - main
-  pull_request:
-    types: [closed]
     branches:
       - main
 

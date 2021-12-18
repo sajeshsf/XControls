@@ -3,11 +3,8 @@ name: ValueConverters NuGet Generation
 on:
   push:
     paths:
+      - '.github/workflows/ValueConverters.yml'
       - 'XControls.ValueConverters/**'
-    branches:
-      - main
-  pull_request:
-    types: [closed]
     branches:
       - main
 

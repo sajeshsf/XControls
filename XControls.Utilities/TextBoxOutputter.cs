@@ -57,7 +57,7 @@ namespace XControls.Utilities
             Timer.Tick += Timer_Tick;
             Console.SetOut(this);
         }
-        private void Timer_Tick(object sender, EventArgs e) => UpdateUi();
+        private void Timer_Tick(object? sender, EventArgs e) => UpdateUi();
         public override void Write(char value)
         {
             base.Write(value);

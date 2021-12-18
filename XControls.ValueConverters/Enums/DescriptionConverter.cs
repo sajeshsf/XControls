@@ -36,7 +36,7 @@ namespace XControls.ValueConverters
                 if (attributes.Length > 0)
                 {
                     var description = attributes[0]?.Description;
-                    if (!string.IsNullOrEmpty(description))
+                    if (description != null && !string.IsNullOrEmpty(description))
                     {
                         return description;
                     }

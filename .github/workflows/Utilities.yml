@@ -3,6 +3,7 @@ name: Utilities NuGet Generation
 on:
   push:
     paths:
+      - '.github/workflows/Utilities.yml'
       - 'XControls.Utilities/**'
     branches:
       - main

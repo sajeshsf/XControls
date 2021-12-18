@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Windows.Data;
 
 namespace XControls.ValueConverters
@@ -9,12 +8,14 @@ namespace XControls.ValueConverters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null || string.IsNullOrEmpty(value.ToString()))
+            if (value != null && !string.IsNullOrEmpty(value.ToString()))
             {
-                return $"0x{0:X}";
+                if (int.TryParse(value.ToString(), out int number))
+                {
+                    return $"0x{number:X}";
+                }
             }
-            int.TryParse(value.ToString(), out int number);
-            return $"0x{number:X}";
+            return $"0x{0:X}";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -25,20 +26,30 @@ namespace XControls.ValueConverters
                 {
                     return 0;
                 }
-                //if (input.Length > 10)
-                //    return input.Substring(input.Length - 9);
-                switch (parameter.ToString())
+                switch (Type.GetTypeCode(targetType))
                 {
-                    case "0": //int
-                        return System.Convert.ToInt32(input, 16);
-                    case "1": //double
-                        return (double)System.Convert.ToInt32(input, 16);
-                    case "2": //byte
-                        return System.Convert.ToByte(input, 16);
-                    case "3":
+                    case TypeCode.Byte:
+                    case TypeCode.Int32:
+                        return System.Convert.ChangeType(input, targetType);
+                    case TypeCode.Double:
+                    case TypeCode.Int64:
+                    case TypeCode.Boolean:
+                    case TypeCode.Empty:
+                    case TypeCode.Object:
+                    case TypeCode.DBNull:
+                    case TypeCode.Char:
+                    case TypeCode.SByte:
+                    case TypeCode.Int16:
+                    case TypeCode.UInt16:
+                    case TypeCode.UInt32:
+                    case TypeCode.UInt64:
+                    case TypeCode.Single:
+                    case TypeCode.Decimal:
+                    case TypeCode.DateTime:
+                    case TypeCode.String:
                     default:
-                        return System.Convert.ToInt32(input, 16).ToString();
-                } 
+                        throw new InvalidCastException($"{targetType?.Name} is not supported");
+                }
             }
             return 0;
         }

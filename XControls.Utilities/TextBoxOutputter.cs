@@ -3,7 +3,6 @@ using System.Text;
 using System.IO;
 using System.Windows.Documents;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Collections.Concurrent;
 using System.Windows.Threading;
@@ -12,62 +11,81 @@ namespace XControls.Utilities
 {
     public class TextBoxOutputter : TextWriter
     {
-        private readonly RichTextBox RichTextBox = null;
-        public DispatcherTimer Timer { get; set; }
+        private readonly RichTextBox RichTextBox;
+        private DispatcherTimer Timer { get; set; }
         private ConcurrentQueue<string> Messages { get; set; }
         private bool ClearRequested { get; set; }
         private int CurrentLineCount { get; set; }
         public int MaximumNumberOfLines { get; set; }
-        public double UpdatePeriod
+        public double? UpdatePeriod
         {
-            get => Timer?.Interval.TotalMilliseconds ?? 0;
+            get => Timer?.Interval.TotalMilliseconds;
             set
             {
                 if (Timer != null)
                 {
-                    Timer.Interval = TimeSpan.FromMilliseconds(UpdatePeriod);
+                    Timer.Interval = TimeSpan.FromMilliseconds(value ?? 1000);
+                }
+            }
+        }
+        public bool? UseTimer
+        {
+            get => Timer?.IsEnabled;
+            set
+            {
+                if (Timer != null)
+                {
+                    Timer.IsEnabled = value ?? false;
                 }
             }
         }
         public override Encoding Encoding => Encoding.UTF8;
-        public TextBoxOutputter()
+        public TextBoxOutputter(RichTextBox richTextBox)
         {
-            UpdatePeriod = 500;
+            RichTextBox = richTextBox;
+            if (RichTextBox.Document.Blocks.First() is Paragraph paragraph)
+            {
+                paragraph.LineHeight = 20;
+            }
             MaximumNumberOfLines = 2000;
             Messages = new ConcurrentQueue<string>();
             Timer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromMilliseconds(UpdatePeriod),
+                Interval = TimeSpan.FromMilliseconds(500),
                 IsEnabled = true
             };
             Timer.Tick += Timer_Tick;
+            Console.SetOut(this);
         }
-        public TextBoxOutputter(RichTextBox richTextBox) : this() => RichTextBox = richTextBox;
-        public void SetOut() => Console.SetOut(this);
-        private void Timer_Tick(object? sender, EventArgs e)
-        {
-            int count = 0;
-            while (Messages.TryDequeue(out string? text) && count < 10)
-            {
-                ((Paragraph)RichTextBox.Document.Blocks.First()).Inlines.Add(text);
-                CurrentLineCount++;
-                count++;
-                if (count == 10)
-                {
-                    RichTextBox.ScrollToVerticalOffset(RichTextBox.ExtentHeight);
-                }
-            }
-            if (ClearRequested || CurrentLineCount >= MaximumNumberOfLines)
-            {
-                ClearRequested = false;
-                CurrentLineCount = 0;
-                ((Paragraph)RichTextBox.Document.Blocks.First()).Inlines.Clear();
-            }
-        }
+        private void Timer_Tick(object? sender, EventArgs e) => UpdateUi();
         public override void Write(char value)
         {
             base.Write(value);
             AddMessage($"{value}");
+        }
+        public void SetOut() => Console.SetOut(this);
+        public void UpdateUi()
+        {
+            Paragraph paragraph = (Paragraph)RichTextBox.Document.Blocks.First();
+            if (ClearRequested || CurrentLineCount >= MaximumNumberOfLines)
+            {
+                ClearRequested = false;
+                CurrentLineCount = 0;
+                paragraph.Inlines.Clear();
+            }
+            int count = 0;
+            var message = new StringBuilder();
+            while (count < 1000 && Messages.TryDequeue(out string? text))
+            {
+                message.Append(text);
+                CurrentLineCount++;
+                count++;
+            }
+            if (message.Length > 0)
+            {
+                paragraph.Inlines.Add(message.ToString());
+                RichTextBox.ScrollToVerticalOffset(RichTextBox.ExtentHeight);
+            }
         }
         public void AddMessage(string value) => Messages.Enqueue(value);
         public void ClearMessages() => ClearRequested = true;

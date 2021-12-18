@@ -14,7 +14,7 @@ namespace XControls.ValueConverters
             {
                 if (TimeSpan.MinValue.Ticks < ticks && ticks > TimeSpan.MaxValue.Ticks)
                 {
-                    TimeSpan span = new TimeSpan(ticks);
+                    var span = new TimeSpan(ticks);
                     return span.ToString(Format);
                 }
             }

@@ -3,6 +3,7 @@ name: Helpers NuGet Generation
 on:
   push:
     paths:
+      - '.github/workflows/Helpers.yml'
       - 'XControls.Helpers/**'
     branches:
       - main

@@ -24,7 +24,7 @@ namespace XControls.Helpers.Extensions
             }
             return (T)valueAsInt;
         }
-        public static int SetBit(int position, int currentValue, bool onOffFlag)
+        public static int SetBit(this int currentValue, int position, bool onOffFlag)
         {
             int mask = 1 << position - 1;
             if (onOffFlag)
@@ -37,7 +37,25 @@ namespace XControls.Helpers.Extensions
             }
             return currentValue;
         }
-        public static bool GetBit(int position, short currentValue)
+        public static short SetBit(this short currentValue, int position, bool onOffFlag)
+        {
+            var mask = 1 << position - 1;
+            if (onOffFlag)
+            {
+                currentValue |= (short)mask;
+            }
+            else
+            {
+                currentValue &= (short)(~mask);
+            }
+            return currentValue;
+        }
+        public static bool GetBit(this int currentValue, int position)
+        {
+            int mask = 1 << position - 1;
+            return (currentValue & mask) > 0;// (currentValue & mask) >> (position - 1) > 0;
+        }
+        public static bool GetBit(this short currentValue, int position)
         {
             int mask = 1 << position - 1;
             return (currentValue & mask) > 0;// (currentValue & mask) >> (position - 1) > 0;

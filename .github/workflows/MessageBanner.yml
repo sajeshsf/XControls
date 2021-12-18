@@ -3,14 +3,11 @@ name: MessageBanner NuGet Generation
 on:
   push:
     paths:
+      - '.github/workflows/MessageBanner.yml'
       - 'XControls.MessageBanner/**'
     branches:
       - main
-  pull_request:
-    types: [closed]
-    branches:
-      - main
-
+      
 jobs:
   build:
     runs-on: windows-latest
@@ -20,9 +17,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
 
-      - name: Setup .NET Core @ Latest
-        uses: actions/setup-dotnet@v1
+      - name: Setup .NET @ Latest
+        uses: actions/setup-dotnet@v1.9.0
         with:
+          dotnet-version: |     
+            3.1.x
+            6.0.x 
+          include-prerelease: true
           source-url: https://api.nuget.org/v3/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}        
@@ -35,5 +36,5 @@ jobs:
       - name: Push generated package to GitHub registry
         run: |
           cd XControls.MessageBanner/out/
-          dotnet nuget push **/*.nupkg -k oy2ke5fy427zjikjvfxqfkxfxm3oh7ce5jaorskkkwdomi --skip-duplicate --no-symbols true
+          dotnet nuget push **/*.nupkg -k ${{secrets.NUGETKEY}} --no-symbols true
 

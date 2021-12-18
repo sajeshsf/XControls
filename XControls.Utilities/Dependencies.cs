@@ -6,7 +6,7 @@ using static System.IO.Path;
 
 namespace XControls.Utilities
 {
-    public class Dependencies
+    public static class Dependencies
     {
         public static bool IsCurrentProcessRunning => IsProcessRunning(GetFileNameWithoutExtension(GetEntryAssembly().Location));
         public static bool CleanUpOldProcess(string[] proceses)

@@ -3,11 +3,8 @@ name: MessageBox NuGet Generation
 on:
   push:
     paths:
+      - '.github/workflows/MessageBox.yml'
       - 'XControls.MessageBox/**'
-    branches:
-      - main
-  pull_request:
-    types: [closed]
     branches:
       - main
 
@@ -21,8 +18,12 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Setup .NET Core @ Latest
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v1.9.0
         with:
+          dotnet-version: |     
+            3.1.x
+            6.0.x 
+          include-prerelease: true
           source-url: https://api.nuget.org/v3/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}        

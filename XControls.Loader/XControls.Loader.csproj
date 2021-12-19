@@ -16,12 +16,12 @@
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
 		<AnalysisLevel>preview</AnalysisLevel>
-		<EnablePackageValidation>true</EnablePackageValidation>
+		<!--<EnablePackageValidation>true</EnablePackageValidation>-->
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 	<ItemGroup>
-		<None Include="README.md" />
+		<None Include="README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="MahApps.Metro" Version="2.4.9" />

@@ -15,6 +15,7 @@
     <ProjectReference Include="..\XControls.NumberStepper\XControls.NumberStepper.csproj" />
     <ProjectReference Include="..\XControls.Utilities\XControls.Utilities.csproj" />
     <ProjectReference Include="..\XControls.ValueConverters\XControls.ValueConverters.csproj" />
+    <ProjectReference Include="..\Xcross.NotificationBanner\Xcross.NotificationBanner.csproj" />
   </ItemGroup>
 
 </Project>

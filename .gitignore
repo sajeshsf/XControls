@@ -21,3 +21,5 @@ XControls.Helpers/bin/
 packages/
 XControls.Helpers.UnitTest/bin/
 XControls.Helpers.UnitTest/obj/
+XControls.Loader/obj/
+XControls.Loader/bin/

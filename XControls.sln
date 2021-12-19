@@ -24,7 +24,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XControls.NumberStepper", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XControls.Helpers", "XControls.Helpers\XControls.Helpers.csproj", "{4F30560D-0E16-4EAB-B74D-BA7036247EF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XControls.Helpers.UnitTest", "XControls.Helpers.UnitTest\XControls.Helpers.UnitTest.csproj", "{AA3F1637-AF50-48C6-9BC1-C94E542E0996}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XControls.Helpers.UnitTest", "XControls.Helpers.UnitTest\XControls.Helpers.UnitTest.csproj", "{AA3F1637-AF50-48C6-9BC1-C94E542E0996}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XControls.Loader", "XControls.Loader\XControls.Loader.csproj", "{0EC85649-81D2-4D61-9D5D-AEF7E7E38EA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +66,10 @@ Global
 		{AA3F1637-AF50-48C6-9BC1-C94E542E0996}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA3F1637-AF50-48C6-9BC1-C94E542E0996}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA3F1637-AF50-48C6-9BC1-C94E542E0996}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EC85649-81D2-4D61-9D5D-AEF7E7E38EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC85649-81D2-4D61-9D5D-AEF7E7E38EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC85649-81D2-4D61-9D5D-AEF7E7E38EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EC85649-81D2-4D61-9D5D-AEF7E7E38EA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

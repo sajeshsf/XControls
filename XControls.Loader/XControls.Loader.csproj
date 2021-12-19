@@ -18,8 +18,12 @@
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnablePackageValidation>true</EnablePackageValidation>
 		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="README.md" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="MahApps.Metro" Version="2.4.9" />
 	</ItemGroup>
 </Project>

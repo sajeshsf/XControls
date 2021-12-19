@@ -1,0 +1,25 @@
+﻿<Window x:Class="XMessageBox.LoaderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XMessageBox"
+        xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d" Background="Transparent" 
+        WindowStartupLocation="CenterScreen"  
+        ShowInTaskbar="False" ResizeMode="NoResize" AllowsTransparency="True"
+        WindowStyle="None" Topmost="False"
+        Title="LoaderWindow" WindowState="Maximized">
+    <Grid Background="Black" Opacity="0.50" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Please Wait" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Panel.ZIndex="2" 
+                   Foreground="White" FontSize="23"/>
+        <mahapps:MetroProgressBar Grid.Row="2" IsIndeterminate="True" Foreground="White" VerticalAlignment="Center"/>
+    </Grid>
+</Window>

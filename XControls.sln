@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XControls.Helpers.UnitTest"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XControls.Loader", "XControls.Loader\XControls.Loader.csproj", "{0EC85649-81D2-4D61-9D5D-AEF7E7E38EA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xcross.NotificationBanner", "Xcross.NotificationBanner\Xcross.NotificationBanner.csproj", "{FA2BD8C3-CA21-425E-B378-5DD4D2D17CE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XControls.NotificationBanner", "Xcross.NotificationBanner\XControls.NotificationBanner.csproj", "{FA2BD8C3-CA21-425E-B378-5DD4D2D17CE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

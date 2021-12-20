@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace UserControls.NotificationBanner
+namespace XControls.NotificationBanner
 {
     /// <summary>
     /// Interaction logic for NotificationFlyout.xaml
@@ -23,14 +23,29 @@ namespace UserControls.NotificationBanner
             UpdateTime();
         }
 
-        private void ItemCloseButton_Click(object sender, RoutedEventArgs e) => NotificationCollection.Remove((sender as Button).DataContext as Notification);
+        private void ItemCloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn)
+            {
+                if (btn.DataContext is Notification item)
+                {
+                    NotificationCollection.Remove(item);
+                }
+            }
+        }
 
-        public bool BaseTextVisibility => NotificationCollection?.Count() == 0;
+        public bool BaseTextVisibility => NotificationCollection?.Count == 0;
 
         public static readonly DependencyProperty IsFlyoutOpenProperty =
             DependencyProperty.Register(nameof(IsFlyoutOpen), typeof(bool), typeof(NotificationFlyout), new PropertyMetadata(default(bool), OnIsFyloutOpenPropertyChanged));
 
-        private static void OnIsFyloutOpenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) => (d as NotificationFlyout).OnIsFyloutOpenPropertyChanged();
+        private static void OnIsFyloutOpenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is NotificationFlyout nf)
+            {
+                nf.OnIsFyloutOpenPropertyChanged();
+            }
+        }
 
         private void OnIsFyloutOpenPropertyChanged() => UpdateTime();
 
@@ -40,7 +55,7 @@ namespace UserControls.NotificationBanner
             {
                 foreach (var item in NotificationCollection)
                 {
-                    item.OnPropertyChanged(nameof(item.TimeStamp));
+                    item.InvokePropertyChanged(nameof(item.TimeStamp));
                 }
             }
         }
@@ -62,7 +77,13 @@ namespace UserControls.NotificationBanner
                new PropertyMetadata(default(ObservableCollection<Notification>), OnNotificationCollectionChanged));
 
         private static void OnNotificationCollectionChanged(DependencyObject dependencyObject,
-             DependencyPropertyChangedEventArgs e) => (dependencyObject as NotificationFlyout).OnNotificationCollectionChanged();
+             DependencyPropertyChangedEventArgs e)
+        {
+            if (dependencyObject is NotificationFlyout nf)
+            {
+                nf.OnNotificationCollectionChanged();
+            }
+        }
 
         private void OnNotificationCollectionChanged() => NotificationCollection.CollectionChanged += OnNotificationCollectionCollectionChanged;
 

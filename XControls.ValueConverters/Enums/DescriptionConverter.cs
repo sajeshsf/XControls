@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 
-namespace XControls.ValueConverters
+namespace XControls.ValueConverters.Enums
 {
     public class DescriptionConverter : EnumConverter
     {

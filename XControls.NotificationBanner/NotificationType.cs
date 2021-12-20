@@ -1,4 +1,4 @@
-﻿namespace UserControls.NotificationBanner
+﻿namespace XControls.NotificationBanner
 {
     public enum NotificationType
     {

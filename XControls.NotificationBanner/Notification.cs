@@ -1,9 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
+using XControls.Utilities;
 
-namespace UserControls.NotificationBanner
+namespace XControls.NotificationBanner
 {
-    public class Notification : INotifyPropertyChanged
+    public class Notification : Bindable
     {
         public string Title { get; set; }
         public string Message { get; set; }
@@ -15,7 +15,6 @@ namespace UserControls.NotificationBanner
             Message = message;
             TimeStamp = DateTime.Now;
         }
-
         public Notification(string title, string message, DateTime timeStamp, NotificationType type)
         {
             Title = title;
@@ -23,7 +22,5 @@ namespace UserControls.NotificationBanner
             TimeStamp = timeStamp;
             Type = type;
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

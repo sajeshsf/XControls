@@ -2,7 +2,7 @@
 
   <PropertyGroup>
 	  <Description>Decimal to Hex, Negation ValueConverters.</Description>
-	  <Version>1.0.0.0</Version>
+	  <Version>1.0.1.0</Version>
 	  <Nullable>enable</Nullable>
 	  <LangVersion>10.0</LangVersion>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -23,7 +23,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\XControls.Helpers\XControls.Helpers.csproj" />
+    <ProjectReference Include="..\XControls.Loader\XControls.Loader.csproj" />
     <ProjectReference Include="..\XControls.MessageBanner\XControls.MessageBanner.csproj" />
+    <ProjectReference Include="..\XControls.Utilities\XControls.Utilities.csproj" />
     <ProjectReference Include="..\XControls.ValueConverters\XControls.ValueConverters.csproj" />
   </ItemGroup>
 	<ItemGroup>

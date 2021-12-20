@@ -5,7 +5,7 @@ using System.Resources;
 
 namespace XControls.Utilities
 {
-    public class LocalisationBase : ObservableObject
+    public class LocalisationBase : Bindable
     {
         private ResourceManager? resourceManager;
         private string resourcesBaseName;

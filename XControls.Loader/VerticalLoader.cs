@@ -3,10 +3,10 @@ using XMessageBox;
 
 namespace XControls.Loader
 {
-    public class Loader
+    public class VerticalLoader
     {
         private LoaderWindow Window { get; set; }
-        private Loader()
+        private VerticalLoader()
         {
             Window = new LoaderWindow();
         }
@@ -16,10 +16,10 @@ namespace XControls.Loader
             Window.Close();
             Cursor.Current = Cursors.Default;// Set cursor as default 
         }
-        public static Loader Show()
+        public static VerticalLoader Show()
         {
             Cursor.Current = Cursors.WaitCursor;// Set cursor as hourglass
-            var loader = new Loader();
+            var loader = new VerticalLoader();
             if (System.Windows.Application.Current?.MainWindow?.IsLoaded == true)
             {
                 loader.Window.Owner = System.Windows.Application.Current.MainWindow;

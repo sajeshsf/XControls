@@ -12,10 +12,10 @@
     <ProjectReference Include="..\XControls.Loader\XControls.Loader.csproj" />
     <ProjectReference Include="..\XControls.MessageBanner\XControls.MessageBanner.csproj" />
     <ProjectReference Include="..\XControls.MessageBox\XControls.MessageBox.csproj" />
+    <ProjectReference Include="..\XControls.NotificationBanner\XControls.NotificationBanner.csproj" />
     <ProjectReference Include="..\XControls.NumberStepper\XControls.NumberStepper.csproj" />
     <ProjectReference Include="..\XControls.Utilities\XControls.Utilities.csproj" />
     <ProjectReference Include="..\XControls.ValueConverters\XControls.ValueConverters.csproj" />
-    <ProjectReference Include="..\Xcross.NotificationBanner\XControls.NotificationBanner.csproj" />
   </ItemGroup>
 
 </Project>

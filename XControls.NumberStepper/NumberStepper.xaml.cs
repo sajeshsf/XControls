@@ -14,7 +14,7 @@ namespace XControls.NumberStepper
     public partial class NumberStepper : UserControl
     {
         private double incrementValue = 1;
-        private Timer mousePressedTimer;
+        private readonly Timer mousePressedTimer;
         #region StepperBackgroundProperty
         public static readonly DependencyProperty StepperBackgroundProperty = DependencyProperty.Register(nameof(StepperBackground), 
             typeof(Brush), typeof(NumberStepper), new PropertyMetadata(default(Brush), OnBackgroundPropertyChanged));
@@ -31,10 +31,7 @@ namespace XControls.NumberStepper
         }
         public Brush StepperBackground
         {
-            get
-            {
-                return (Brush)GetValue(StepperBackgroundProperty);
-            }
+            get => (Brush)GetValue(StepperBackgroundProperty);
             set
             {
                 if ((Brush)GetValue(StepperBackgroundProperty) != value)
@@ -60,10 +57,7 @@ namespace XControls.NumberStepper
         }
         public Brush StepperForeground
         {
-            get
-            {
-                return (Brush)GetValue(StepperForegroundProperty);
-            }
+            get => (Brush)GetValue(StepperForegroundProperty);
             set
             {
                 if ((Brush)GetValue(StepperForegroundProperty) != value)
@@ -76,14 +70,14 @@ namespace XControls.NumberStepper
         #region MinMax
         public double Min
         {
-            get { return (double)GetValue(MinProperty); }
-            set { SetValue(MinProperty, value); }
+            get => (double)GetValue(MinProperty);
+            set => SetValue(MinProperty, value);
         }
         public static readonly DependencyProperty MinProperty = DependencyProperty.Register(nameof(Min), typeof(double), typeof(NumberStepper), new PropertyMetadata(default(double)));
         public double Max
         {
-            get { return (double)GetValue(MaxProperty); }
-            set { SetValue(MaxProperty, value); }
+            get => (double)GetValue(MaxProperty);
+            set => SetValue(MaxProperty, value);
         }
         public static readonly DependencyProperty MaxProperty = DependencyProperty.Register(nameof(Max), typeof(double), typeof(NumberStepper), new PropertyMetadata(default(double)));
         #endregion
@@ -105,10 +99,7 @@ namespace XControls.NumberStepper
         }
         public double Number
         {
-            get
-            {
-                return (double)GetValue(NumberProperty);
-            }
+            get => (double)GetValue(NumberProperty);
             set
             {
                 if ((double)GetValue(NumberProperty) != value)
@@ -123,10 +114,7 @@ namespace XControls.NumberStepper
         public bool UpButtonPressed { get; set; }
         public double IncrementValue
         {
-            get
-            {
-                return incrementValue;
-            }
+            get => incrementValue;
             set
             {
                 incrementValue = value;
@@ -152,7 +140,13 @@ namespace XControls.NumberStepper
             contentBox.DataContext = this;
             Min = -double.MaxValue;
             Max = double.MaxValue;
-            MousePressedTimerInit();
+            mousePressedTimer = new Timer
+            {
+                Interval = 250,
+                Enabled = false,
+                AutoReset = true
+            };
+            mousePressedTimer.Elapsed += new ElapsedEventHandler(MousePressedTimerInit_Elapsed);
         }
         #region INotifyPropertyChangedSupport 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -161,16 +155,6 @@ namespace XControls.NumberStepper
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-        private void MousePressedTimerInit()
-        {
-            mousePressedTimer = new System.Timers.Timer
-            {
-                Interval = 250,
-                Enabled = false,
-                AutoReset = true
-            };
-            mousePressedTimer.Elapsed += new ElapsedEventHandler(MousePressedTimerInit_Elapsed);
-        }
         private void MousePressedTimerInit_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (UpButtonPressed)

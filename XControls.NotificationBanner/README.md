@@ -1,3 +1,3 @@
 # XControls.NotificationBanner
 
-Notification Banner
+Notification Banner for wpf

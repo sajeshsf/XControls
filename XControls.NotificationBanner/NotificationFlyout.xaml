@@ -1,0 +1,199 @@
+﻿<UserControl x:Class="XControls.NotificationBanner.NotificationFlyout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:XControls.NotificationBanner"
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local1="clr-namespace:XControls.ValueConverters;assembly=XControls.ValueConverters"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style x:Key="btn_Close" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <materialdesign:PackIcon x:Name="Close" Kind="Close" Foreground="{TemplateBinding Foreground}"/>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content=""/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Visibility"  TargetName="Close" Value="Visible"/>
+                            </Trigger>
+                            
+                                <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--<DataTemplate x:Key="FlyoutHeader" x:Shared="False">
+            <DockPanel x:Name="dpHeader"
+                   VerticalAlignment="Center"
+                   LastChildFill="True">
+                <ToggleButton x:Name="PART_BackButton"
+                    Background="Transparent"
+                    Width="34"
+                    Height="34"
+                    Margin="2 4 2 2"
+                    BorderThickness="0"
+                    VerticalAlignment="Bottom"
+                    DockPanel.Dock="Left" 
+                    IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mahapps:Flyout}}, Path=IsOpen,Mode=TwoWay}"
+                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type mahapps:Flyout}}, Path=Foreground}"
+                    Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mahapps:Flyout}}, Path=CloseButtonVisibility}">
+                    <ToggleButton.Style>
+                        <Style TargetType="{x:Type ToggleButton}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <materialdesign:PackIcon Kind="ArrowCollapseRight" x:Name="icon" Background="Transparent" Height="22" Width="22" 
+                                                                     VerticalAlignment="Center"/>
+                                            <ContentPresenter HorizontalAlignment="Left" 
+                                          RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                          VerticalAlignment="Center" Content=""/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Cursor" Value="Hand"/>
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="Foreground" TargetName="icon" Value="#FF0bdbb6"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ToggleButton.Style>
+                </ToggleButton>
+                <ContentControl x:Name="PART_BackHeaderText"
+                            Margin="0,0 0 0"
+                            FontSize="16"
+                            VerticalAlignment="Center"
+                            Content="{Binding}"
+                            Focusable="False"
+                            IsTabStop="False"
+                            Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mahapps:Flyout}}, Path=TitleVisibility}" />
+            </DockPanel>
+        </DataTemplate>-->
+
+        <CollectionViewSource x:Key="CollectionView" Source="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl}, Path=NotificationCollection}">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="TimeStamp" Direction="Descending"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+
+        <local1:RelativeDateTimeConvertor x:Key="RelativeDateTimeConvertor" />
+        
+        <BooleanToVisibilityConverter  x:Key="BooleanToVisibility"/>
+
+    </UserControl.Resources>
+    
+    
+    
+    <Border BorderBrush="Transparent">
+        <Border.Effect>
+            <DropShadowEffect Color="Black" ShadowDepth="7" Opacity="0.5"></DropShadowEffect>
+        </Border.Effect> 
+    
+    <mahapps:Flyout x:Name="notificationFlyout" 
+                    MinWidth="390" HeaderTemplate="{DynamicResource FlyoutHeader}"
+                    mahapps:HeaderedControlHelper.HeaderMargin="10,5,0,0"
+                    mahapps:ControlsHelper.ContentCharacterCasing="Normal"
+                    VerticalContentAlignment="Top" Foreground="{StaticResource TextColor}" 
+                    Header="Notifications" FontSize="13" 
+                    Position="Right" Grid.Row="1" IsPinned="True"
+                    Background="{DynamicResource SurfaceColor}" AutoCloseInterval="5000"
+                    Margin="0,0,0,800" 
+                    IsOpen="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl},Path=IsFlyoutOpen}" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="BaseText" Panel.ZIndex="1" Foreground="{StaticResource TextColor}" Text="No New Notifications" 
+                           Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl},Path=BaseTextVisibility,
+                                                Converter={StaticResource BooleanToVisibility}}" 
+                           FontSize="14" HorizontalAlignment="Center" />
+
+                <ListView Background="{DynamicResource SurfaceColor}" x:Name="NotificationListview" Margin="10,10,10,3" 
+                          ItemsSource="{Binding Source={StaticResource CollectionView}}" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderThickness="0" SelectionMode="Single" 
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+               
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border  Background="Transparent" Padding="2" >
+                        <StackPanel Orientation="Horizontal" MinHeight="40">
+                                    <TextBlock Text="{Binding Message}" x:Name="ItemText"   HorizontalAlignment="Left" 
+                                       Width="320" Foreground="{StaticResource TextColor}" TextWrapping="WrapWithOverflow"/>
+                                    <Grid  Margin="5,0,0,0" >
+                                        <Button Style="{StaticResource btn_Close}" x:Name="ItemCloseButton" VerticalAlignment="Top" HorizontalAlignment="Right" 
+                                           Height="14" Width="14" TextBlock.TextAlignment="Center"  VerticalContentAlignment="Center" Click="ItemCloseButton_Click" 
+                                           Cursor="Hand" BorderThickness="0" />
+
+
+                                        <TextBlock Text="{Binding TimeStamp, Converter={StaticResource RelativeDateTimeConvertor}}" FontSize="11" Foreground="White" 
+                                                   VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+            <Button x:Name="ClearButton" Background="Transparent" BorderThickness="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="0" 
+                    Height="15" Margin="0,0,20,0" Click="ClearButton_Click">
+                    <TextBlock FontSize="13" Text="Clear All" VerticalAlignment="Top" >
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Foreground" Value="Gray"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=IsMouseOver}" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=IsClicked}" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}" >
+                                        <ContentPresenter Margin="5,0,0,0" HorizontalAlignment="Center" 
+                                                          VerticalAlignment="Top"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                
+            </Grid>
+    </mahapps:Flyout>
+    </Border>
+</UserControl>

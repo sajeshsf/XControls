@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 
-namespace XControls.ValueConverters
+namespace XControls.ValueConverters.Enums
 {
     public class DescriptionConverter : EnumConverter
     {
@@ -19,7 +19,7 @@ namespace XControls.ValueConverters
             }
             return GetDescription(value);
         }
-        private static object GetDescription(object value)
+        public static object GetDescription(object value)
         {
             var name = value.ToString();
             if (name == null)

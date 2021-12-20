@@ -1,0 +1,40 @@
+name: Loader  NuGet Generation
+
+on:
+  push:
+    paths:
+      - '.github/workflows/Loader.yml'
+      - 'XControls.Loader/**'
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+    name: Update NuGet package
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Setup .NET @ Latest
+        uses: actions/setup-dotnet@v1.9.0
+        with:
+          dotnet-version: |     
+            3.1.x
+            6.0.x 
+          include-prerelease: true
+          source-url: https://api.nuget.org/v3/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.NUGETKEY}}        
+          
+      - name: Build solution and generate NuGet package
+        run: |
+          cd XControls.Loader/
+          dotnet pack XControls.Loader.csproj -c Release -o out  
+
+      - name: Push generated package to GitHub registry
+        run: |
+          cd XControls.Loader/out/
+          dotnet nuget push **/*.nupkg -k ${{secrets.NUGETKEY}} --no-symbols true
+

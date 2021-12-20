@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Markup;
 
-namespace XControls.ValueConverters
+namespace XControls.ValueConverters.Enums
 {
     public class EnumBindingSourceExtension : MarkupExtension
     {

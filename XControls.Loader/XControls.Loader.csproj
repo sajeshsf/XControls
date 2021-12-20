@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<Version>1.0.9.0</Version>
-		<Description>Essential utilities for wpf application including Property Change Implementation,relay command etc.</Description>
+		<Description>Loaders</Description>
+		<Version>1.0.0.0</Version>
 		<Nullable>enable</Nullable>
 		<LangVersion>10.0</LangVersion>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -16,21 +16,14 @@
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
 		<AnalysisLevel>preview</AnalysisLevel>
+		<!--<EnablePackageValidation>true</EnablePackageValidation>-->
 		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
-		<PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\XControls.Helpers\XControls.Helpers.csproj" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-	  <Reference Include="WindowsBase" />
-	  <Reference Include="PresentationCore" />
-	  <Reference Include="PresentationFramework" />
+	  <PackageReference Include="MahApps.Metro" Version="2.4.9" />
 	</ItemGroup>
 </Project>

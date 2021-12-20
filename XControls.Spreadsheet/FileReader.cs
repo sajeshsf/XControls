@@ -10,7 +10,7 @@ namespace XWorkers.Spreadsheet
         public bool FileExists() => File.Exists(FileName);
         protected Dictionary<string, object> ReadAndParse(string[] separator)
         {
-            Dictionary<string, object> parameterList = new Dictionary<string, object>();
+            var parameterList = new Dictionary<string, object>();
             using (var file = new StreamReader(FileName))
             {
                 string line;

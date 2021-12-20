@@ -1,4 +1,4 @@
-name: Helpers NuGet Generation
+name: NotificationBanner NuGet Generation
 
 on:
   push:

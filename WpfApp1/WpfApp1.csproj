@@ -14,6 +14,7 @@
     <ProjectReference Include="..\XControls.MessageBox\XControls.MessageBox.csproj" />
     <ProjectReference Include="..\XControls.NotificationBanner\XControls.NotificationBanner.csproj" />
     <ProjectReference Include="..\XControls.NumberStepper\XControls.NumberStepper.csproj" />
+    <ProjectReference Include="..\XControls.Spreadsheet\XControls.Spreadsheet.csproj" />
     <ProjectReference Include="..\XControls.Utilities\XControls.Utilities.csproj" />
     <ProjectReference Include="..\XControls.ValueConverters\XControls.ValueConverters.csproj" />
   </ItemGroup>

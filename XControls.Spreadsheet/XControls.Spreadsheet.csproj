@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<Description>Decimal to Hex, Negation ValueConverters.</Description>
-		<Version>1.0.6.0</Version>
+		<Version>1.0.1.0</Version>
+		<Description>CSV TSV Helper</Description>
 		<Nullable>enable</Nullable>
 		<LangVersion>10.0</LangVersion>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -16,14 +16,8 @@
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
 		<AnalysisLevel>preview</AnalysisLevel>
-		<EnablePackageValidation>true</EnablePackageValidation>
-		<UseWPF>true</UseWPF>
 	</PropertyGroup>
 	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath="" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-	  <Reference Include="PresentationFramework" />
-	  <Reference Include="System.Xaml" />
+	  <ProjectReference Include="..\XControls.Helpers\XControls.Helpers.csproj" />
 	</ItemGroup>
 </Project>

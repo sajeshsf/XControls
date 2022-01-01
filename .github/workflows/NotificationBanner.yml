@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/NotificationBanner.yml'
-      - 'XControls.NotificationBanner/**'
+      - 'XControls.NotificationBanner/XControls.NotificationBanner.csproj'
     branches:
       - main
 
@@ -37,4 +37,3 @@ jobs:
         run: |
           cd XControls.NotificationBanner/out/
           dotnet nuget push **/*.nupkg -k ${{secrets.NUGETKEY}} --no-symbols true
-

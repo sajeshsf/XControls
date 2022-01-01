@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/MessageBox.yml'
-      - 'XControls.MessageBox/**'
+      - 'XControls.MessageBox/XControls.MessageBox.csproj'
     branches:
       - main
 

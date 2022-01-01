@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/MessageBanner.yml'
-      - 'XControls.MessageBanner/**'
+      - 'XControls.MessageBanner/XControls.MessageBanner.csproj'
     branches:
       - main
       

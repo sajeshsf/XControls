@@ -18,6 +18,9 @@
 		<AnalysisLevel>preview</AnalysisLevel>
 	</PropertyGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\XControls.Helpers\XControls.Helpers.csproj" />
+		<None Include="README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\XControls.Helpers\XControls.Helpers.csproj" />
 	</ItemGroup>
 </Project>

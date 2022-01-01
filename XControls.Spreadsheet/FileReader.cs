@@ -19,10 +19,10 @@ namespace XWorkers.Spreadsheet
             var parameterList = new Dictionary<string, object>();
             using (var file = new StreamReader(FileName))
             {
-                string line;
-                while ((line = file.ReadLine()) != null)
+                var line = file.ReadLine();
+                while (line != null)
                 {
-                    string[] result = line.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
+                    var result = line.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
                     parameterList.Add(result[0], result[1]);
                 }
             }

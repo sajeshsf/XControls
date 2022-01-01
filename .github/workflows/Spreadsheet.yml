@@ -1,4 +1,4 @@
-name: ValueConverters NuGet Generation
+name: Spreadsheet NuGet Generation
 
 on:
   push:

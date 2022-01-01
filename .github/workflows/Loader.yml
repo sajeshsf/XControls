@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/Loader.yml'
-      - 'XControls.Loader/**'
+      - 'XControls.Loader/XControls.Loader.csproj'
     branches:
       - main
 

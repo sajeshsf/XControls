@@ -1,0 +1,35 @@
+name: ValueConverters NuGet Generation
+
+on:
+  push:
+    paths:
+      - '.github/workflows/Spreadsheet.yml'
+      - 'XControls.Spreadsheet/XControls.Spreadsheet.csproj'
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+    name: Update NuGet package
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Setup .NET Core @ Latest
+        uses: actions/setup-dotnet@v1
+        with:
+          source-url: https://api.nuget.org/v3/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}        
+          
+      - name: Build solution and generate NuGet package
+        run: |
+          cd XControls.ValueConverters/
+          dotnet pack XControls.Spreadsheet.csproj -c Release -o out  
+
+      - name: Push generated package to GitHub registry
+        run: |
+          cd XControls.Spreadsheet/out/
+          dotnet nuget push **/*.nupkg -k ${{secrets.NUGETKEY}} --no-symbols true

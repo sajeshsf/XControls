@@ -4,7 +4,7 @@ using System.Windows.Threading;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace XControls.Utilities
+namespace XControls.Mvvm
 {
     public abstract class UpdatingObject : ObservableObject
     {

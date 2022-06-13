@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Resources;
 
-namespace XControls.Utilities
+namespace XControls.Mvvm
 {
     public class LocalisationBase : Bindable
     {

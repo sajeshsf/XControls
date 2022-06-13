@@ -1,6 +1,6 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 
-namespace XControls.Utilities
+namespace XControls.Mvvm
 {
     public class Bindable : ObservableObject
     {

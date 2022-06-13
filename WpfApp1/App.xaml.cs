@@ -14,6 +14,11 @@ namespace WpfApp1
     /// </summary>
     public partial class App : Application
     {
-        //GlobalExceptionHandler.Instance.
+        public App()
+        {
+            GlobalExceptionHandler.Instance.HandleUnhandledException += (s, e) =>
+            {
+            };
+        }
     }
 }

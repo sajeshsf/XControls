@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using XControls.Helpers.Extensions;
 
-namespace XControls.Helpers.UnitTest
+namespace XControls.UnitTest
 {
     [TestClass]
     public class MathOperationsUnitTest1
@@ -9,11 +9,11 @@ namespace XControls.Helpers.UnitTest
         [TestMethod]
         public void GetMinAndMaxValueMethod()
         {
-            var arr = new double[] {1,3,5,10};
+            var arr = new double[] { 1, 3, 5, 10 };
             var (min, max) = arr.GetMinAndMaxValue();
             Assert.AreEqual(min, 1);
             Assert.AreEqual(max, 10);
-        }      
+        }
         [TestMethod]
         public void GetScalefactorOffsetMethod_Double()
         {

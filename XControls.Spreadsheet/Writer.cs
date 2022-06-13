@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using XControls.Helpers;
 using static XControls.Helpers.StringConstants;
 
-namespace XWorkers.Spreadsheet
+namespace XControls.Spreadsheet
 {
     public static class Writer
     {
@@ -30,7 +30,7 @@ namespace XWorkers.Spreadsheet
         {
             var separator = newLine ?? Environment.NewLine;
             var content = string.Join(separator, param.Select(selector));
-            return WriteToFile(content, fileName, header, encoding);
+            return content.WriteToFile(fileName, header, encoding);
         }
         public static Task WriteToFile(this DataTable tsvTable, string fileName,
             string? header = null, string separator = TABSPACE, Encoding? encoding = null, string? newLine = null)

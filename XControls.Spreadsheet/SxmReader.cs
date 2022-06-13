@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using XControls.Helpers;
 
-namespace XWorkers.Spreadsheet
+namespace XControls.Spreadsheet
 {
     public class SxmReader : FileReader
     {

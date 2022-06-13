@@ -17,19 +17,9 @@ namespace XControls.Utilities
     }
     public class GlobalExceptionHandler
     {
-        static GlobalExceptionHandler _Instance;
-        public static GlobalExceptionHandler Instance
-        {
-            get
-            {
-                if (_Instance == null)
-                {
-                    _Instance = new GlobalExceptionHandler();
-                }
-                return _Instance;
-            }
-        }
+        static GlobalExceptionHandler? _Instance;
         public EventHandler<GlobalExceptionEventArgs> HandleUnhandledException;
+        public static GlobalExceptionHandler Instance => _Instance ??= new GlobalExceptionHandler();
         private GlobalExceptionHandler()
         {
             var appDomain = AppDomain.CurrentDomain;
@@ -37,9 +27,8 @@ namespace XControls.Utilities
             {
                 appDomain.UnhandledException += (s, e) =>
                 {
-                    HandleUnhandledException.Invoke(s, new GlobalExceptionEventArgs(
-                        "AppDomain.CurrentDomain.UnhandledException",
-                        s, (Exception)e.ExceptionObject));
+                    HandleUnhandledException?.Invoke(s, new GlobalExceptionEventArgs(
+                        "AppDomain.CurrentDomain.UnhandledException", s, (Exception)e.ExceptionObject));
                 };
             }
             var application = System.Windows.Application.Current;
@@ -47,15 +36,14 @@ namespace XControls.Utilities
             {
                 application.DispatcherUnhandledException += (s, e) =>
                 {
-                    HandleUnhandledException.Invoke(s, new GlobalExceptionEventArgs(
-                        "Application.Current.DispatcherUnhandledException",
-                        s, e.Exception));
+                    HandleUnhandledException?.Invoke(s, new GlobalExceptionEventArgs(
+                        "Application.Current.DispatcherUnhandledException", s, e.Exception));
                     e.Handled = true;
                 };
             }
             TaskScheduler.UnobservedTaskException += (s, e) =>
             {
-                HandleUnhandledException.Invoke(s, new GlobalExceptionEventArgs(
+                HandleUnhandledException?.Invoke(s, new GlobalExceptionEventArgs(
                     "TaskScheduler.UnobservedTaskException", s, e.Exception));
                 e.SetObserved();
             };

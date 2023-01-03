@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using XControls.Helpers.Extensions;
+using XControls.Utilities.Helpers.Extensions;
 
 namespace XControls.UnitTest
 {

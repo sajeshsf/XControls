@@ -1,7 +1,7 @@
 ﻿using Microsoft.Win32;
 using System.IO;
 using System.Linq;
-using XControls.Helpers;
+using XControls.Utilities.Helpers;
 
 namespace XControls.Utilities
 {

@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
 	<PropertyGroup>
-		<Version>1.0.10.0</Version>
-		<Description>Essential utilities for wpf application including Property Change Implementation,relay command etc.</Description>
+		<Description>Decimal to Hex, Negation ValueConverters.</Description>
+		<Version>1.0.1.0</Version>
 		<Nullable>enable</Nullable>
 		<LangVersion>10.0</LangVersion>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -16,23 +17,22 @@
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
 		<AnalysisLevel>preview</AnalysisLevel>
+		<!--<EnablePackageValidation>true</EnablePackageValidation>-->
 		<UseWPF>true</UseWPF>
 	</PropertyGroup>
-	<ItemGroup>
-	  <Compile Remove="GlobalExceptionHandler.cs" />
-	</ItemGroup>
 	<ItemGroup>
 		<None Include="README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-	  <Reference Include="WindowsBase" />
-	  <Reference Include="PresentationCore" />
-	  <Reference Include="PresentationFramework" />
+		<PackageReference Include="MahApps.Metro" Version="2.4.9" />
+		<PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
+		<PackageReference Include="NLog" Version="5.1.1" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Utilities\Helpers\XControls.Utilities.Helpers.csproj" />
+	  <ProjectReference Include="..\..\Utilities\Helpers\XControls.Utilities.Helpers.csproj" />
+	  <ProjectReference Include="..\..\Utilities\Mvvm\XControls.Utilities.Mvvm.csproj" />
+	  <ProjectReference Include="..\..\Utilities\ValueConverters\XControls.Utilities.ValueConverters.csproj" />
+	  <ProjectReference Include="..\Loader\XControls.Controls.Loader.csproj" />
+	  <ProjectReference Include="..\MessageBanner\XControls.Controls.MessageBanner.csproj" />
 	</ItemGroup>
 </Project>

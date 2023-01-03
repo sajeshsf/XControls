@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<Version>1.0.10.0</Version>
-		<Description>Essential utilities for wpf application including Property Change Implementation,relay command etc.</Description>
+		<Title>$(AssemblyName)</Title>
+		<Description>Loaders</Description>
+		<Version>1.0.1.0</Version>
 		<Nullable>enable</Nullable>
 		<LangVersion>10.0</LangVersion>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -15,24 +16,16 @@
 		<TargetFrameworks>net461;netcoreapp3.1</TargetFrameworks>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
-		<AnalysisLevel>preview</AnalysisLevel>
+		<AnalysisLevel>6.0-all</AnalysisLevel>
+		<!--<EnablePackageValidation>true</EnablePackageValidation>-->
 		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ProduceReferenceAssembly>True</ProduceReferenceAssembly>
 	</PropertyGroup>
-	<ItemGroup>
-	  <Compile Remove="GlobalExceptionHandler.cs" />
-	</ItemGroup>
 	<ItemGroup>
 		<None Include="README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-	  <Reference Include="WindowsBase" />
-	  <Reference Include="PresentationCore" />
-	  <Reference Include="PresentationFramework" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\Utilities\Helpers\XControls.Utilities.Helpers.csproj" />
+		<PackageReference Include="MahApps.Metro" Version="2.4.9" />
 	</ItemGroup>
 </Project>
